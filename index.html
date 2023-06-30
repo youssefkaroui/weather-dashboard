@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,35 +11,37 @@
 </head>
 <body>
   <!--Header-->
-  <header class="header" id="header">
-  <div class="title d-flex justify-content-center">
- 
-    <h1 class="project-title"> Your weather dashboard 
-    </h1>
-  </div>  
-
+  <header class="container-fluid bg-info-subtle  text-center p-3" id="header">
+    <h1> Your weather dashboard </h1>  
   </header>
-    <main class="main">
+   
+  <main class="container-fluid">
    <!-- main container, holds the search for city and display 5-days-forecast cards-->
-      <div class="container">
-        <div class="row">
+
+        <div class="grid gap-0 row-gap-3">
           <!-- search for city and search history container-->
-          <div class="col-4">
-            <p class="search-h2"> Search for a city:</p>
-            <div class="users-input" >
-              <input type="text" id="input">
+          <div class=" col-2" >
+            
+          <h4>Search for a City: </h4>
+            <div class="form-floating mb-3">
+              
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">City</label>
+            </div>
+
+
+              <div class="d-grid gap-2 "> 
+             <button class="btn btn-outline-secondary btn-lg d-md-block" id="search-button">Search</button>
+            </div>
+            <div class="border border-primary-subtle p-2 mb-2 border-opacity-25 " id="search-history-container">
 
             </div>
-            <button class="search-button" id="search-button">Search</button>
-          <div class="search-history" id="search-history-container">
-
-          </div>
           </div>
           <!--current weather in searched city container-->
-          <div class="col-6">
+          <div class="col-8">
             <div class="current-weather-container">
               <h2 class="city" id="current-city"></h2>
-              <img class="weather-icon" id="weather-icon"src="" alt="">
+              <img class="weather-icon" id="weather-icon">
               <p class="temperature" id="temperature"></p>
               <p class="wind-speed" id="wind-speed"></p>
               <p class="humidity" id="humidity"></p>
@@ -47,49 +50,23 @@
             <div class="5-days-forecast row d-block" id="5-days-forecast">
               <h3 class="h3" id="h3"></h3>
               <div class="cards-container d-flex" id="cards-container">
-                <div class="card-container" id="card-container">
-                  <p class="card-date" id="date-0"></p>
-                  <img id="card-icon-0" src="" alt="">
-                  <p class="card-temperature" id="temp-0"></p>
-                  <p class="card-wind" id="wind-0"></p>
-                  <p class="card-humidity" id="hum-o"></p>
-              </div>
-              <div class="card-container" id="card-container">
-                <p class="card-date" id="date-1"></p>
-                <img id="card-icon-1" src="" alt="">
-                <p class="card-temperature" id="temp-1"></p>
-                <p class="card-wind" id="wind-1"></p>
-                <p class="card-humidity" id="hum-1"></p>
-            </div>
-            <div class="card-container" id="card-container">
-              <p class="card-date" id="date-2"></p>
-              <img id="card-icon-2" src="" alt="">
-              <p class="card-temperature" id="temp-2"></p>
-              <p class="card-wind" id="wind-2"></p>
-              <p class="card-humidity" id="hum-2"></p>
-          </div>
-          <div class="card-container" id="card-container">
-            <p class="card-date" id="date-3"></p>
-            <img id="card-icon-3" src="" alt="">
-            <p class="card-temperature" id="temp-3"></p>
-            <p class="card-wind" id="wind-3"></p>
-            <p class="card-humidity" id="hum-3"></p>
-        </div>
-        <div class="card-container" id="card-container">
-          <p class="card-date" id="date-4"></p>
-          <img id="card-icon-4" src="" alt="">
-          <p class="card-temperature" id="temp-4"></p>
-          <p class="card-wind" id="wind-4"></p>
-          <p class="card-humidity" id="hum-4"></p>
-      </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      
     </main>
     <!-- link to jQuery-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!--link to dayjs-->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
+
+    </script>
     <!--link to script.js-->
     <script src="assets/js/script.js"></script>   
 </body>
