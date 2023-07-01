@@ -18,9 +18,9 @@
   <main class="container-fluid">
    <!-- main container, holds the search for city and display 5-days-forecast cards-->
 
-        <div class="grid gap-0 row-gap-3">
+        <div class="row">
           <!-- search for city and search history container-->
-          <div class=" col-2" > 
+          <div class=" col-2 m-2" > 
           <h2>Search for a City: </h2>
             <form class="form-floating mb-3 " id="search-place-holder">
               <input type="text" class="form-control" name="city" id="city" >
@@ -37,8 +37,8 @@
             </div>
           </div>
           <!--current weather in searched city container-->
-          <div class="col-8">
-            <div class="current-weather-containerp-3" id=current-weather>
+          <div class="col-8 m-2">
+            <div class="current-weather-container p-3" id=current-weather>
               <h2 class="city" id="current-city"></h2>
               <h3 class="current-date" id="current-date"></h3>
               <img class="weather-icon" id="weather-icon">
@@ -47,7 +47,7 @@
               <p class="humidity" id="current-humidity"></p>
             </div>
             <!--5 day forecast cards container-->
-            <div class="5-days-forecast row d-block" id="5-days-forecast"></div>
+            <div class="5-days-forecast row " id="5-day-forecast"></div>
           </div>
         </div>
       
