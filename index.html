@@ -22,15 +22,16 @@
           <!-- search for city and search history container-->
           <div class=" col-2" > 
           <h2>Search for a City: </h2>
-            <div class="form-floating mb-3 " id="search-place-holder">
-              <input type="email" class="form-control" name="city" id="floatingInput" placeholder="name@example.com">
+            <form class="form-floating mb-3 " id="search-place-holder">
+              <input type="text" class="form-control" name="city" id="city" >
               <label for="floatingInput">City</label>
-            </div>
+              <button id="submit-button" type="submit" class="btn btn-outline-secondary btn-lg d-md-block">Search</button>
+            </form>
 
 
-            <div class="d-grid gap-2 "> 
+            <!-- <div class="d-grid gap-2 "> 
              <button class="btn btn-outline-secondary btn-lg d-md-block" id="search-button">Search</button>
-            </div>
+            </div> -->
             <div class="border border-primary-subtle p-2 mb-2 border-opacity-25 " id="search-history-container">
 
             </div>

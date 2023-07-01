@@ -1,7 +1,8 @@
+
+
 var apiKey="86dbb0be58935b576e4fdd7365e04545";
 
-
-var requestUrl="https://api.openweathermap.org/geo/1.0/direct?q=" + CityEl+ "&appid=" + apiKey;
+// var requestUrl="https://api.openweathermap.org/geo/1.0/direct?q=" + CityEl+ "&appid=" + apiKey;
 var searchHistoryEl= $("#search-history-container");
 var forcastEl= $("#5-days-forcast");
 var searchInputEl= $("#search-place-holder");
@@ -13,37 +14,21 @@ var temperatureEl=$("#temperature");
 var windEl=$("#wind-speed");
 var humidityEl=$("#current-humidity");
 
-// this function gets the coordinates of the city 
 
-function getCoordinates (CityEl){
-fetch(requestUrl)
-.then(function(response){
-    return response.json();
+
+
+
+function getWeather(cityName){
     
-
-})
-.then(function (data){
     
-    var longitude = data[0].lon;
-    console.log(longitude)
-    var latitude = data[0].lat;
-    console.log(latitude);
-
-    getWeather(longitude,latitude);
-    getForecast(longitude,latitude);
-
-})
-};
-
-function getWeather(longitude,latitude){
-    var requestWeather= "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=" + apiKey;
-
-    fetch(requestWeather)   
+    var requestCurrent =`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+    fetch(requestCurrent)   
  .then(function(response){
      return response.json();
 
  })
  .then(function(data){
+    //  console.log(data);
      CityEl.text($("#city"));
      DateEl.text(dayjs().format('dddd, MMM DD, YYYY'))
      WeatherIconEl.attr("src","https://openweathermap.org/img/wn/"+ data.weather[0].icon+ "@2x.png");
@@ -55,6 +40,34 @@ function getWeather(longitude,latitude){
  })
 
 }
-getCoordinates();
-getWeather();
 
+
+
+searchInputEl.on("submit",function(event){
+    event.preventDefault();
+    var cityName= CityEl.val();
+    console.log(cityName);
+    getWeather(cityName);
+     getForecast(cityName);
+})
+
+
+function getForecast(cityName){
+    var requestForecast =`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`
+    fetch(requestForecast)   
+ .then(function(response){
+     return response.json();
+
+ })
+ .then(function(data){
+    //  console.log(data);
+     displayForecast();     
+     
+ 
+ })
+
+
+}
+function displayForecast(){
+    
+}
