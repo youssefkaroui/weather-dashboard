@@ -2,7 +2,7 @@
 
 var apiKey="86dbb0be58935b576e4fdd7365e04545";
 
-// var requestUrl="https://api.openweathermap.org/geo/1.0/direct?q=" + CityEl+ "&appid=" + apiKey;
+
 var searchHistoryEl= $("#search-history-container");
 var forcastEl= $("#5-day-forecast");
 var searchInputEl= $("#search-place-holder");
@@ -16,6 +16,36 @@ var windEl=$("#wind-speed");
 var humidityEl=$("#current-humidity");
 
 
+ 
+
+ // event listener for user input
+
+searchInputEl.on("submit",function(event){
+    event.preventDefault();
+
+    var cityName= CityEl.val();
+    var citiesSearched=JSON.parse(localStorage.getItem("searchedCities"));
+    // console.log(cityName);
+
+    if (cityName==="") {
+        alert("Please enter a valid city name.");
+        return;
+    }
+    if (citiesSearched=== null){
+        citiesSearched=[];
+    }
+
+    if (citiesSearched.indexOf(cityName)=== -1){
+        printSearchHistory(cityName);
+
+    }
+    saveSearchEntry(cityName);
+    getWeather(cityName);
+     getForecast(cityName);
+
+
+     $(searchInputEl)[0].reset();
+})
 
 //gets the current weather and displays in html
 
@@ -39,15 +69,7 @@ function getWeather(cityName){
  })
 }
 
-// event listener for user input
 
-searchInputEl.on("submit",function(event){
-    event.preventDefault();
-    var cityName= CityEl.val();
-    console.log(cityName);
-    getWeather(cityName);
-     getForecast(cityName);
-})
 
 // gets the data for 5 days forecast and calls a function to display information 
 function getForecast(cityName){
@@ -63,9 +85,9 @@ function getForecast(cityName){
  })
 }
 function displayForecast(data){
-var forecastTitle=document.createElement("h3");
-forecastTitle.textContent= data.city.name + "  5-day-forcast";
- $(forcastEl).append(forecastTitle);
+  var forecastTitle=document.createElement("h3");
+  forecastTitle.textContent= data.city.name + "  5-day-forcast";
+  $(forcastEl).append(forecastTitle);
 
  for (i=5; i<data.list.length; i+=8) {
      var forecastCard= document.createElement("div");
@@ -101,3 +123,45 @@ forecastTitle.textContent= data.city.name + "  5-day-forcast";
  }
 
 }
+
+// stores the citiesSearched in  localstorage
+function saveSearchEntry(cityName) {
+    
+    var citiesSearched = JSON.parse(localStorage.getItem("searchedCities"));
+  
+    if (citiesSearched === null){
+      citiesSearched = [];
+      citiesSearched.push(cityName);
+    } else if (citiesSearched.indexOf(cityName) === -1) {
+      citiesSearched.push(cityName);
+    } 
+   
+    localStorage.setItem("searchedCities", JSON.stringify(citiesSearched)); 
+
+}
+function printSearchHistory(){
+    var citiesSearched= JSON.parse(localStorage.getItem("searchedCities"));
+    if (citiesSearched===null){
+        citiesSearched=[];
+    }
+
+    for (i=0; i < citiesSearched.length; i++){
+        newCityBtn.setAttribute("id", citiesSearched[i]);
+        newCityBtn.setAttribute("class","btn");
+        newCityBtn.textContent= citiesSearched[i];
+        $(searchHistoryEl).append(newCityBtn);
+        
+    }
+}
+
+function updateSearchHistory (cityName){
+    var newCityBtn= document.createElement("button");
+    newCityBtn.setAttribute("id",cityName);
+    newCityBtn.setAttribute("class","newCityBtn");
+    newCityBtn.textContent= cityName;
+    searchHistoryEl.appendChild(newCityBtn);
+}
+printSearchHistory();
+
+
+  
