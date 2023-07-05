@@ -82,6 +82,7 @@ function getForecast(cityName){
      displayForecast(data);     
  })
 }
+// this function displays the 5-day-forecast 
 function displayForecast(data){
     forcastEl.innerHTML="";
   var forecastTitle=document.createElement("h3");
@@ -131,27 +132,16 @@ function saveSearchEntry(cityName) {
   
     if (citiesSearched === null){
         citiesSearched = [];
-        citiesSearched.push(cityName);  
-        // var newCityBtn= document.createElement("button");
-        // newCityBtn.setAttribute("id",cityName);
-        // newCityBtn.setAttribute("class", "newCityBtn");
-        // newCityBtn.textContent= cityName;
-        // searchHistoryEl.append(newCityBtn);
-    
+        citiesSearched.push(cityName);   
     } else if (citiesSearched.indexOf(cityName) === -1) {
         citiesSearched.push(cityName);
         console.log(citiesSearched);
-        // var newCityBtn= document.createElement("button");
-        // newCityBtn.setAttribute("id",cityName);
-        // newCityBtn.setAttribute("class", "newCityBtn");
-        // newCityBtn.textContent= cityName;
-        // searchHistoryEl.append(newCityBtn);
     }
     localStorage.setItem("searchedCities", JSON.stringify(citiesSearched)); 
     printSearchedCities();
 
 }
-
+// this function renders the savedCities to the saved-cities-container
 function printSearchedCities(){
   var citiesHistory= JSON.parse(localStorage.getItem("searchedCities"));
     if (citiesHistory=== null){
@@ -162,7 +152,7 @@ function printSearchedCities(){
   citiesHistory.forEach((element)=>{
     var pastCitiesBtn= document.createElement("button");
         pastCitiesBtn.setAttribute("id", element);
-        pastCitiesBtn.setAttribute("class", "past-cities-btn");
+        pastCitiesBtn.setAttribute("class", " btn btn-outline-secondary btn-lg btn-block");
         pastCitiesBtn.textContent= element;
         searchHistoryEl.append(pastCitiesBtn);
     }); 
